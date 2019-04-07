@@ -5,18 +5,18 @@ class Buku extends DbConfig
 {
     // database connection and table name
 
-    private $table_name = "buku";
+    private $TABLE_NAME = "buku";
 
     // object properties
-    public $id = "Kode_Buku";
-    public $name = "Nama_Buku";
+    private $ID = "Kode_Buku";
+    private $NAME = "Nama_Buku";
 
 
     // used by select drop-down list
     public function selectAll()
     {
         //select all data
-        $query = "SELECT * FROM " . $this->table_name . " ";
+        $query = "SELECT * FROM " . $this->TABLE_NAME . " ";
  
         $stmt = $this->connection()->prepare($query);
 
@@ -27,18 +27,16 @@ class Buku extends DbConfig
         return $datas;
     }
 
-    // public function readName()
-    // {
-    //     $query = "SELECT name FROM " . $this->table_name . " WHERE id = ? limit 0,1";
- 
-    //     $stmt = $this->conn->prepare($query);
+    public function getById($id){
+        $query = "SELECT * FROM " . $this->TABLE_NAME ." where ". $this->ID . " = ? ";
 
-    //     $stmt->bindParam(1, $this->id);
-        
-    //     $stmt->execute();
+        $stmt = $this->connection()->prepare($query);
+        $stmt->bindParam(1, $id);
+
+        $stmt->execute();
+
+        $data = $stmt->fetch(PDO::FETCH_OBJ);
  
-    //     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-     
-    //     $this->name = $row['name'];
-    // }
+        return $data;
+    }
 }

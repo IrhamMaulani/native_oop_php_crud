@@ -6,10 +6,19 @@ class BukuController
 {
     public function index()
     {
-        $book = new Buku();
+        $books = new Buku();
  
-        $books = $book->selectAll();
+        $books = $books->selectAll();
 
         return $books;
+    }
+
+    public function show($id){
+        
+        $book = new Buku();
+
+        $book = $book->getById($id);
+
+        return $book;
     }
 }

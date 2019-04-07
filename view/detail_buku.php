@@ -14,16 +14,24 @@
 
 <body>
 
+    <h1>Detail Buku</h1>
+
+    <?php $ids = $_GET['id'];
+    ?>
+
     <?php
     $bukuController = new BukuController();
-    $books = $bukuController->index();
-
+    $book = $bukuController->show(1);
 ?>
 
-    <?php foreach ($books as $book) {
+    <?php 
+    echo $book->Kode_Buku;
+    echo" <br>";
     echo $book->Nama_Buku;
     echo" <br>";
-}
+    echo $book->Harga_Buku;
+    echo" <br>";
+    echo $book->Pengarang_Buku;
 ?>
 
 
