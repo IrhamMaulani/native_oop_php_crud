@@ -9,7 +9,7 @@ class DbConfig
     public $conn;
 
     // get the database connection
-    public function getConnection()
+    public function connection()
     {
         $this->conn = null;
 

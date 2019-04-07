@@ -1,30 +1,24 @@
 <?php
-class Buku
+require_once("../DbConfig.php");
+
+class Buku extends DbConfig
 {
     // database connection and table name
-    private $conn;
+
     private $table_name = "buku";
 
     // object properties
     public $id = "Kode_Buku";
     public $name = "Nama_Buku";
 
-    public function __construct($db)
-    {
-        $this->conn = $db;
-    }
 
     // used by select drop-down list
     public function selectAll()
     {
         //select all data
-        $query = "SELECT
-                   *
-                FROM
-                    " . $this->table_name . "
-                ";
+        $query = "SELECT * FROM " . $this->table_name . " ";
  
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->connection()->prepare($query);
 
         $stmt->execute();
 
